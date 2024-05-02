@@ -13,7 +13,6 @@ public class ObstacleManager : MonoBehaviour
     private Camera mainCamera;
     private float checkInterval = 1f; // 생성 간격
     private Vector2 screenBounds;
-    int range = 10;
 
     void Start()
     {
@@ -34,11 +33,22 @@ public class ObstacleManager : MonoBehaviour
                 Vector2 spawnPosition = RandomPosition(rand);
                 GameObject newObstacle = Instantiate(obstaclePrefabs[randomIndex], spawnPosition, Quaternion.identity, parent);
                 currentObstacles.Add(newObstacle);
-                StartCoroutine(FadeOutAndDestroy(newObstacle, 5f)); // 10초 후 투명화 시작
+                StartCoroutine(FadeOutAndDestroy(newObstacle, 20f)); // n초 후 투명화 시작
         }
     }
-
     Vector2 RandomPosition(int index)
+    {
+        BoxCollider2D collider = boxColls[index];
+        Bounds bounds = collider.bounds;
+
+        // 실제 게임 월드에서의 x, y 좌표를 랜덤하게 계산
+        float x = Random.Range(bounds.min.x, bounds.max.x);
+        float y = Random.Range(bounds.min.y, bounds.max.y);
+
+        return new Vector2(x, y);
+    }
+
+    /*Vector2 RandomPosition(int index)
     {
 
         RectTransform pos = boxColls[index].GetComponent<RectTransform>();
@@ -56,10 +66,10 @@ public class ObstacleManager : MonoBehaviour
         }
 
         return randPos;
-    }
+    }*/
     IEnumerator FadeOutAndDestroy(GameObject obstacle, float delay)
     {
-        yield return new WaitForSeconds(5f); // N초 대기
+        yield return new WaitForSeconds(10f); // N초 대기
         SpriteRenderer sr = obstacle.GetComponent<SpriteRenderer>();
         while (sr.color.a > 0.05f)
         {
