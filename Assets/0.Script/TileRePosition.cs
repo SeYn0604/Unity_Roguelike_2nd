@@ -52,7 +52,6 @@ public class TileRePosition : MonoBehaviour
                     {
                         transform.Translate(Vector3.up * dirY * 60);
                     }
-
                     break;
             }
             /*
