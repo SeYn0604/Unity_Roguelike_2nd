@@ -11,8 +11,8 @@ public class Monster : MonoBehaviour
     [SerializeField] protected GameObject magPrefab;
  
     public float hp;
-    protected float atkTime = 2f;
-    protected int power = 6;
+    protected float atkTime = 0.3f;
+    protected int power = 101;
     private float atkTimer;
     private float hitFreezeTimer;
     // Start is called before the first frame update
@@ -40,7 +40,7 @@ public class Monster : MonoBehaviour
 
         float distance = Vector2.Distance(p.transform.position, transform.position);
 
-        if (distance <= 1) //
+        if (distance <= 0.3) //
         {
             atkTimer += Time.deltaTime;
             //공격
@@ -86,8 +86,9 @@ public class Monster : MonoBehaviour
             Destroy(GetComponent<Rigidbody2D>());
             GetComponent<CapsuleCollider2D>().enabled = false;
             animator.SetBool("Dead", true);
-            StartCoroutine("CDropExp");
-            if(UnityEngine.Random.value < 0.005)
+            UI.instance.KillCount++;
+            //StartCoroutine("CDropExp");
+            if (UnityEngine.Random.value < 0.005)
             {
                 //Instantiate(magPrefab, transform.position, Quaternion.identity);
             }
@@ -95,7 +96,7 @@ public class Monster : MonoBehaviour
     }
     IEnumerator CDropExp()
     {
-        UI.instance.KillCount++;
+        
         //Instantiate(expPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);

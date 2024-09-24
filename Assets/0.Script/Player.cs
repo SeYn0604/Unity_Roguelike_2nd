@@ -71,53 +71,15 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Run", true);
         }
-        //else dead 조건 추가해야됌
 
-        /*if(Input.GetKeyDown(KeyCode.F2))
+        if (HP < 0)
         {
-            shieldCount++;
-            shields.Add(Instantiate(shieldPrefab, shieldParent));
-            Shield();
+            UI.instance.NextScene();
         }
-        if(Input.GetKeyDown(KeyCode.F3))
-        {
-            shieldSpeed += 10;
-        }
-        shieldParent.Rotate(Vector3.back * Time.deltaTime * shieldSpeed);
-        *///(기존에 있던)삽쉴드 개발자 치트키 코드
-        /*Monster[] monsters = FindObjectsOfType<Monster>();
-        List<Monster> atkMonsterList = new List<Monster>();
-        bulletTimer += Time.deltaTime;
-
-        if(monsters.Length > 0 && bulletTimer > 2f)
-        {
-            foreach(Monster m in monsters)
-            {
-                float distance = Vector3.Distance(transform.position, m.transform.position);
-                if(distance > 4)
-                {
-                    atkMonsterList.Add(m);
-                }    
-            }
-            if(atkMonsterList.Count > 0)
-            {
-                Monster m = atkMonsterList[Random.Range(0,atkMonsterList.Count)];
-                //타겟을 찾아 방향 전환
-                Vector2 vec = transform.position - m.transform.position;
-                float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
-                firePos.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
-                Bullet b = Instantiate(bullet, firePos);
-                b.SetHitMaxCount(BulletHitMaxCount + 1);
-                //b.transform.SetParent(firepos);
-                b.transform.SetParent(null);
-            }
-            bulletTimer = 0;
-        }
-        *///(기존에 있던)랜덤한 좀비에게 자동으로 총알을 발사하는 코드
     }
     public void Hit(int damage)
     {
-        HP -= (damage);  //(GameDataMng.Instance.userDef/100));
+        HP -= (damage);
         UI.instance.SetHP(HP, MaxHP);
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -127,11 +89,11 @@ public class Player : MonoBehaviour
             Bullet bullet = collision.GetComponent<Bullet>();
             if (bullet != null)
             {
-                Hit(10); // 플레이어에게 10의 데미지를 입힙니다.
+                Hit(101); // 플레이어에게 10의 데미지를 입힙니다.
                 Destroy(collision.gameObject); // 총알을 제거합니다.
             }
         }
-        else if (collision.tag == "Mag"|| collision.tag == "Exp" && collision.CompareTag("ItemDetector"))
+        else if (collision.tag == "Mag" || collision.tag == "Exp" && collision.CompareTag("ItemDetector"))
         {
             Item item = collision.GetComponent<Item>();
             if (item != null)
@@ -141,10 +103,9 @@ public class Player : MonoBehaviour
             }
         }
     }
-
     public void GetExp(int exp)
     {
-        UI.instance.Exp += exp;
+        //UI.instance.Exp += exp;
     }
     /*public void Shield()
     {

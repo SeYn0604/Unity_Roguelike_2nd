@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class MainSceneChanger : MonoBehaviour
 {
-    public Button btn;
+
 
     public void Onclick()
-    {
+    {/*
         switch (btn.name)
         {
             case "start btn":
@@ -23,5 +23,6 @@ public class MainSceneChanger : MonoBehaviour
                 break;
             
         }
+    }*/
     }
 }

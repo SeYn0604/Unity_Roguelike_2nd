@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 
 public enum GameState { Play, Pause, Stop }
 [System.Serializable]
@@ -212,4 +213,11 @@ public class UI : MonoBehaviour
             upgradeCounters[upgradeName] = (currentValue.current + 1, currentValue.max);
         }
     }
+
+    public void NextScene()
+    {
+        GameObject.Find("GameManager").GetComponent<ForPaper>().Score(SceneManager.GetActiveScene().buildIndex,KillCount);
+    }
+
+
 }
