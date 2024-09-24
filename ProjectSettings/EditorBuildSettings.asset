@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Breaktime.unity
     guid: 4b9eb4636e8ab9b4fb71933d58b59700
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: c8ce5e7bda934794086640bd322b7b01
   m_configObjects: {}

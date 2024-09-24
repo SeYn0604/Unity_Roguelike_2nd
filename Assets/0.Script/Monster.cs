@@ -40,13 +40,12 @@ public class Monster : MonoBehaviour
 
         float distance = Vector2.Distance(p.transform.position, transform.position);
 
-        if (distance <= 0.3) //
+        if (distance <= 1) //
         {
             atkTimer += Time.deltaTime;
             //공격
             if (atkTimer > atkTime)
             {
-                atkTimer = 0;
                 p.Hit(power);
             }
         }

@@ -52,7 +52,7 @@ public class RangedMonster : Monster
             Vector2 bulletDirection = (p.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(bulletDirection.y, bulletDirection.x) * Mathf.Rad2Deg - 90; 
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, angle));
-            bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed* 0.05f;
+            //bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed* 0.05f;
             yield return new WaitForSeconds(3f); 
         }
     }

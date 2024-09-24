@@ -30722,7 +30722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640409842}
   - component: {fileID: 640409843}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Area
   m_TagString: Area
   m_Icon: {fileID: 0}

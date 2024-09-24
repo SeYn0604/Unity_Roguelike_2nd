@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Hit(101);
+        }
         // 마우스 위치에 따라 에임 조정
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         Vector2 aimDirection = (mousePosition - transform.position).normalized;
@@ -79,7 +83,7 @@ public class Player : MonoBehaviour
     }
     public void Hit(int damage)
     {
-        HP -= (damage);
+        //HP -= (damage);
         UI.instance.SetHP(HP, MaxHP);
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -89,8 +93,8 @@ public class Player : MonoBehaviour
             Bullet bullet = collision.GetComponent<Bullet>();
             if (bullet != null)
             {
-                Hit(101); // 플레이어에게 10의 데미지를 입힙니다.
-                Destroy(collision.gameObject); // 총알을 제거합니다.
+                Hit(101);
+                Destroy(collision.gameObject); 
             }
         }
         else if (collision.tag == "Mag" || collision.tag == "Exp" && collision.CompareTag("ItemDetector"))
@@ -107,21 +111,5 @@ public class Player : MonoBehaviour
     {
         //UI.instance.Exp += exp;
     }
-    /*public void Shield()
-    {
-        float z = 360 / shieldCount;
-        for (int i = 0; i < shieldCount; i++)
-        {
-            shields[i].gameObject.SetActive(true);
-            shields[i].rotation = Quaternion.Euler(0, 0, z * i);
-        }
-    }
-    public void AddShield()
-    {
-        shieldCount++;
-        shields.Add(Instantiate(shieldPrefab, shieldParent));
-        Shield();
-        shieldSpeed += 10;
-    }*///(기존에 있던)삽쉴드 코드
 }
 

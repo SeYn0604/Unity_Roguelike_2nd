@@ -123,10 +123,6 @@ public class UI : MonoBehaviour
         {
             gameState = GameState.Play;
         }
-        if (Input.GetKey(KeyCode.F1))
-        {
-            Exp += 1f;
-        }
         if (gameState != GameState.Play)
         {
             monsterSpawnController.StartSpawn(false);

@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public int HitCount { get; set; }
     public int HitMaxCount { get; set; }
     public int damage;
-    public float speed = 20f;
+    public float speed = 0f;
     // Start is called before the first frame update
     void Start()
     {
