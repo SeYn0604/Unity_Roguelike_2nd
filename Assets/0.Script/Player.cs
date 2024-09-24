@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     }
     public void Hit(int damage)
     {
-        //HP -= (damage);
+        HP -= (damage);
         UI.instance.SetHP(HP, MaxHP);
     }
     void OnTriggerEnter2D(Collider2D collision)

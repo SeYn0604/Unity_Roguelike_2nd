@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected GameObject expPrefab;
     [SerializeField] protected GameObject magPrefab;
- 
+    public bool isDead = false;
     public float hp;
     protected float atkTime = 0.3f;
     protected int power = 101;
@@ -40,13 +40,14 @@ public class Monster : MonoBehaviour
 
         float distance = Vector2.Distance(p.transform.position, transform.position);
 
-        if (distance <= 1) //
+        if (distance <= 1 && isDead == false) //
         {
             atkTimer += Time.deltaTime;
             //공격
             if (atkTimer > atkTime)
             {
                 p.Hit(power);
+                atkTime = 0;
             }
         }
         else
@@ -67,6 +68,7 @@ public class Monster : MonoBehaviour
     {
         if(collision.gameObject.tag == "PlayerBullet" && collision.GetComponent<Bullet>())
         {  
+            isDead = true;
             collision.GetComponent<Bullet>().HitCount++;
             if(collision.GetComponent <Bullet>().HitCount >= collision.GetComponent<Bullet>().HitMaxCount)
             {
@@ -82,6 +84,9 @@ public class Monster : MonoBehaviour
         AudioManager.instance.Play("hit1");
         if (hp <= 0)
         {
+            isDead= true;
+            gameObject.tag = "DeadMonster";
+            GetComponent<Rigidbody2D>().simulated = false;
             Destroy(GetComponent<Rigidbody2D>());
             GetComponent<CapsuleCollider2D>().enabled = false;
             animator.SetBool("Dead", true);

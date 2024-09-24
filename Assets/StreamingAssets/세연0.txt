@@ -1,0 +1,5 @@
+세연 의 점수
+InfiniteMap:14
+FiniteMap:6
+HorizontalInfinite:1
+VerticalInfinite:2
