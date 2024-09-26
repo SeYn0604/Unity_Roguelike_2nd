@@ -1,0 +1,5 @@
+123 의 점수
+InfiniteMap:2
+FiniteMap:13
+HorizontalInfinite:4
+VerticalInfinite:7
